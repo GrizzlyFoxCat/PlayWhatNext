@@ -23,13 +23,14 @@ if(!isset($_SESSION['steamid'])) {
     include ('steamauth/userInfo.php'); //To access the $steamprofile array
     
     $steamid = $steamprofile['steamid'];
+    $apikey = $steamauth['apikey'];
 
     echo "Welcome back " . $steamprofile['personaname'] . "</br>";
     echo "here is your avatar: </br>" . '<img src="'.$steamprofile['avatarfull'].'" title="" alt="" /><br>'; // Display their avatar!
     logoutbutton(); //Logout Button
 
     // Make request to get list of owned games
-$api_url = "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=2BEA2C1CE7C241F706A7AD01A5D55279&steamid=$steamid&include_played_free_games=1&include_appinfo=1";
+$api_url = "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=$apikey&steamid=$steamid&include_played_free_games=1&include_appinfo=1";
 $games_data = json_decode(file_get_contents($api_url), true);
 $games = $games_data['response']['games'];
 
@@ -37,7 +38,7 @@ $games = $games_data['response']['games'];
 $played_games = array();
 foreach ($games as $game) {
     $appid = $game['appid'];
-    $playtime_url = "http://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v0001/?key=2BEA2C1CE7C241F706A7AD01A5D55279&steamid=$steamid&count=1";
+    $playtime_url = "http://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v0001/?key=$apikey&steamid=$steamid&count=1";
     $playtime_data = json_decode(file_get_contents($playtime_url), true);
     $playtime = $playtime_data['response']['games'][0]['playtime_2weeks'];
     $played_games[] = array('name' => $game['name'], 'playtime' => $playtime);
