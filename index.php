@@ -12,7 +12,8 @@ require 'steamauth/steamauth.php';
     <div class="logo">
         <h1>PlayWhatNext</h1>
     </div>
-    <div class="login">
+    <div class="main">
+        <div class="login">
 <?php
 if(!isset($_SESSION['steamid'])) {
 
@@ -31,7 +32,7 @@ if(!isset($_SESSION['steamid'])) {
 }
 ?>
 </div>
-<div class="main">
+<div class="content">
     <?php
 if(isset($_SESSION['steamid'])) {
     // Make request to get list of owned games
@@ -61,5 +62,6 @@ if(isset($_SESSION['steamid'])) {
 
 ?>
     </div>
+</div>
 </body>
 </html>
