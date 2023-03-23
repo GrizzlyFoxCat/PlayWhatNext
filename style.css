@@ -1,0 +1,46 @@
+/* Set the background gradient */
+body {
+	background: linear-gradient(to bottom, #1c1c1c, #262626);
+	color: #fff;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	margin: 0;
+	padding: 0;
+}
+
+/* Style the logo */
+.logo {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	padding: 20px;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.logo h1 {
+	font-size: 64px;
+	margin: 0;
+	line-height: 1;
+	background: linear-gradient(to right, #b44dff, #5c5cff, #b44dff);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+/* Style the Steam login button */
+.login {
+	margin-top: 80px;
+}
+
+.login input[type="image"] {
+	border: none;
+	outline: none;
+}
+
+.login input[type="image"]:hover {
+	cursor: pointer;
+}
