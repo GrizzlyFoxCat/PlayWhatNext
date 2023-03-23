@@ -40,7 +40,7 @@ foreach ($games as $game) {
     $appid = $game['appid'];
     $playtime_url = "http://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v0001/?key=$apikey&steamid=$steamid&count=1";
     $playtime_data = json_decode(file_get_contents($playtime_url), true);
-    $playtime = $playtime_data['response']['games'][0]['playtime_2weeks'];
+    $playtime = isset($playtime_data['response']['games'][0]['playtime_2weeks']) ? $playtime_data['response']['games'][0]['playtime_2weeks'] : 0;
     $played_games[] = array('name' => $game['name'], 'playtime' => $playtime);
 }
 
