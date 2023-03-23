@@ -40,7 +40,13 @@ foreach ($games as $game) {
     $appid = $game['appid'];
     $playtime_url = "http://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v0001/?key=$apikey&steamid=$steamid&count=1";
     $playtime_data = json_decode(file_get_contents($playtime_url), true);
-    $playtime = isset($playtime_data['response']['games'][0]['playtime_2weeks']) ? $playtime_data['response']['games'][0]['playtime_2weeks'] : 0;
+    $playtime = 0;
+    foreach ($playtime_data['response']['games'] as $played_game) {
+        if ($played_game['appid'] == $appid) {
+            $playtime = $played_game['playtime_2weeks'];
+            break;
+        }
+    }
     $played_games[] = array('name' => $game['name'], 'playtime' => $playtime);
 }
 
@@ -55,7 +61,7 @@ if (count($played_games) > 0) {
 } else {
     echo "<p>You don't appear to have played any games in the last 2 weeks.</p>";
 }
-}     
+}
 ?>
     </div>
 </body>
