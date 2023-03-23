@@ -3,10 +3,6 @@ body {
 	background: linear-gradient(to bottom, #1c1c1c, #262626);
 	color: #fff;
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
 	height: 100vh;
 	margin: 0;
 	padding: 0;
@@ -14,6 +10,8 @@ body {
 
 /* Style the logo */
 .logo {
+	margin-top: 0px;
+	text-align: center;
 	top: 0;
 	left: 0;
 	right: 0;
@@ -32,6 +30,7 @@ body {
 
 /* Style the Steam login button */
 .login {
+	text-align: center;
 	margin-top: 80px;
 }
 

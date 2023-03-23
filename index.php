@@ -28,39 +28,6 @@ if(!isset($_SESSION['steamid'])) {
     echo "Welcome back " . $steamprofile['personaname'] . "</br>";
     echo "here is your avatar: </br>" . '<img src="'.$steamprofile['avatarfull'].'" title="" alt="" /><br>'; // Display their avatar!
     logoutbutton(); //Logout Button
-
-    // Make request to get list of owned games
-$api_url = "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=$apikey&steamid=$steamid&include_played_free_games=1&include_appinfo=1";
-$games_data = json_decode(file_get_contents($api_url), true);
-$games = $games_data['response']['games'];
-
-// Loop through owned games and get playtime for last 2 weeks
-$played_games = array();
-foreach ($games as $game) {
-    $appid = $game['appid'];
-    $playtime_url = "http://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v0001/?key=$apikey&steamid=$steamid&count=1";
-    $playtime_data = json_decode(file_get_contents($playtime_url), true);
-    $playtime = 0;
-    foreach ($playtime_data['response']['games'] as $played_game) {
-        if ($played_game['appid'] == $appid) {
-            $playtime = $played_game['playtime_2weeks'];
-            break;
-        }
-    }
-    $played_games[] = array('name' => $game['name'], 'playtime' => $playtime);
-}
-
-// Display list of owned games and their playtime in last 2 weeks
-if (count($played_games) > 0) {
-    echo "<h2>Games you own and their playtime in the last 2 weeks:</h2>";
-    echo "<ul>";
-    foreach ($played_games as $game) {
-        echo "<li>" . $game['name'] . ": " . $game['playtime'] . " minutes</li>";
-    }
-    echo "</ul>";
-} else {
-    echo "<p>You don't appear to have played any games in the last 2 weeks.</p>";
-}
 }
 ?>
     </div>
