@@ -28,7 +28,12 @@ if(!isset($_SESSION['steamid'])) {
     echo "Welcome back " . $steamprofile['personaname'] . "</br>";
     echo "here is your avatar: </br>" . '<img src="'.$steamprofile['avatarfull'].'" title="" alt="" /><br>'; // Display their avatar!
     logoutbutton(); //Logout Button
-
+}
+?>
+</div>
+<div class="main">
+    <?php
+if(isset($_SESSION['steamid'])) {
     // Make request to get list of owned games
     $api_url = "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=$apikey&steamid=$steamid&include_played_free_games=1&include_appinfo=1";
     $games_data = json_decode(file_get_contents($api_url), true);
