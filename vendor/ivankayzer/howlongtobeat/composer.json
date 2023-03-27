@@ -1,0 +1,26 @@
+{
+    "name": "ivankayzer/howlongtobeat",
+    "version": "1.0.2",
+    "authors": [
+        {
+            "name": "Ivan Kayzer",
+            "email": "ivan.kayzer@outlook.com"
+        }
+    ],
+    "keywords": ["how long to beat", "hl2b", "howlongtobeat"],
+    "homepage": "https://github.com/ivankayzer/howlongtobeat",
+    "license": "MIT",
+    "description": "howlongtobeat.com provides information about games and how long it will take to finish them. This library is a simple wrapper to fetch data from Howlongtobeat website",
+    "require": {
+        "fabpot/goutte": "^4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "IvanKayzer\\HowLongToBeat\\": "src/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7",
+        "mockery/mockery": "^1.3"
+    }
+}

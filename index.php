@@ -58,6 +58,26 @@ if(isset($_SESSION['steamid'])) {
     echo "<h2>Average playtime per day in last 2 weeks:</h2>";
     echo "<p>" . $hours_played_per_day . " hours per day</p>";
 
+     // Make request to get list of owned games and their playtime
+    $api_url = "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=$apikey&steamid=$steamid&include_played_free_games=1&include_appinfo=1";
+    $games_data = json_decode(file_get_contents($api_url), true);
+    $games = $games_data['response']['games'];
+
+    // Sort games by total playtime
+    usort($games, function($a, $b) {
+        return $b['playtime_forever'] - $a['playtime_forever'];
+    });
+
+    // Display top 5 games with their total playtime
+    echo "<h2>Top 5 games and their total playtime:</h2>";
+    echo "<ol>";
+    for ($i = 0; $i < 5; $i++) {
+        $game = $games[$i];
+        $playtime = round($game['playtime_forever'] / 60, 2);
+        echo "<li>" . $game['name'] . ": " . $playtime . " hours</li>";
+    }
+    echo "</ol>";
+
 }
 
 ?>

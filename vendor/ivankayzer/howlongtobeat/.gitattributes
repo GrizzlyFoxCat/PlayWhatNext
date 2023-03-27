@@ -1,0 +1,2 @@
+tests/snapshots/* linguist-vendored
+tests/templates/* linguist-vendored
